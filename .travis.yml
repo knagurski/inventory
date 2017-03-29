@@ -7,3 +7,4 @@ node_js:
     - "node"
 before_install:
     - "npm install -g npm@^3"
+script: "npm run unit"
