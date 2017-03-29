@@ -1,4 +1,5 @@
-# inventory
+# Inventory
+[![Build Status](https://travis-ci.org/knagurski/inventory.svg?branch=master)](https://travis-ci.org/knagurski/inventory)
 
 > Simple sample application to explore the use of Vue.js and some new techniques.
 
