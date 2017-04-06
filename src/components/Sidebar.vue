@@ -1,12 +1,20 @@
 <template>
     <section class="sidebar">
         This is the sidebar
+        <button type="button" @click.stop="add">Add</button>
     </section>
 </template>
 
 <script>
+import Event from '../core/Event'
+
 export default {
-  name: 'Sidebar'
+  name: 'Sidebar',
+  methods: {
+    add () {
+      Event.$emit('StockItem:new')
+    }
+  }
 }
 </script>
 
