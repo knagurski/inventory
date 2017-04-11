@@ -29,7 +29,6 @@ export default {
         this.$data.selectedItem = item
       })
       .$on('StockItem:new', () => {
-        console.log('here')
         this.$data.selectedItem = new StockItem()
       })
       .$on('StockItem:delete', item => {
@@ -98,26 +97,24 @@ export default {
     .toolbar__section {
       margin: .5em;
     }
+  }
+  button {
+    background-color: white;
+    border:0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    padding: .8em 1em calc(.8em - 3px);
+    border-bottom: 3px solid rgba(0,0,0,.3);
+    transition: all .1s ease-in-out;
 
-    button {
-      background-color: white;
-      border:0;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      padding: .8em 1em calc(.8em - 3px);
-      border-bottom: 3px solid rgba(0,0,0,.3);
-      transition: all .1s ease-in-out;
-
-      &[type="submit"] {
-        padding-bottom: calc(.8em - 3px);
-        border-bottom: 3px solid #42b983;
-      }
-      &:focus, &:hover {
-        box-shadow: 0 3px 6px 2px rgba(0,0,0,.5)
-      }
-      &:active {
-        transform: scale(.95);
-      }
+    &[type="submit"] {
+      padding-bottom: calc(.8em - 3px);
+      border-bottom: 3px solid #42b983;
     }
-
+    &:focus, &:hover {
+      box-shadow: 0 3px 6px 2px rgba(0,0,0,.5)
+    }
+    &:active {
+      transform: scale(.95);
+    }
   }
 </style>

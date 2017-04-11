@@ -1,6 +1,6 @@
 <template>
     <div class="item-card" v-bind:class="state" @click.stop.prevent="onClick">
-        <div class="item-card__image"></div>
+        <div class="item-card__image"><img v-bind:src="item.imageSrc"></div>
         <div class="item-card__info">
             <div class="item-card__name">{{item.name}}</div>
             <div class="item-card__price">
@@ -47,8 +47,10 @@ export default {
     $cardColour: rgba(255,255,255,1);
 
     .item-card {
+        cursor: pointer;
         background-color: rgba(255,255,255,1);
-        min-width: 200px;
+        width: 200px;
+        max-width: 200px;
         margin: .5em;
         box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
         transition: all .2s ease-in-out;

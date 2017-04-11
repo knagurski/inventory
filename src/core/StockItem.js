@@ -3,7 +3,8 @@ class StockItem {
     Object.assign(
       this,
       {
-        id: Math.floor(Math.random() * 1000),
+        id: null,
+        imageSrc: '',
         name: '',
         description: '',
         price: 100,

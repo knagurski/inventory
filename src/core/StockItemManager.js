@@ -10,7 +10,15 @@ class StockItemManager {
   }
   addItem (item) {
     this.items.push(item)
-    this.items.sort((itemA, itemB) => itemA.name > itemB.name ? 1 : -1)
+    this.items.sort((itemA, itemB) => {
+      return itemA.name.toLowerCase() > itemB.name.toLowerCase() ? 1 : -1
+    })
+
+    // ID would come from the server
+    item.id = Math.floor(Math.random() * 1000)
+    // images are beyond the scope, for now
+    item.imageSrc = '//loremflickr.com/200/200/product?rand=' + item.id
+
     this.persist()
 
     return this

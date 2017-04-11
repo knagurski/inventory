@@ -17,7 +17,7 @@
         </div>
         <div class="toolbar">
             <div class="toolbar__section">
-                <button class="item-form__delete" type="button" @click="deleteItem">Delete</button>
+                <button v-if="selectedItem && selectedItem.id" class="item-form__delete" type="button" @click="deleteItem">Delete</button>
             </div>
             <div class="toolbar__section">
                 <button class="item-form__cancel" type="button" @click="cancel">Cancel</button>
@@ -44,7 +44,12 @@ export default {
   methods: {
     persist () {
       stockItemForm.persist()
-      Event.$emit('StockItem:edit', this.$props.selectedItem)
+
+      if (this.$props.selectedItem.id) {
+        Event.$emit('StockItem:edit', this.$props.selectedItem)
+      } else {
+        Event.$emit('StockItem:add', this.$props.selectedItem)
+      }
     },
     cancel () {
       Event.$emit('StockItem:cancel')
