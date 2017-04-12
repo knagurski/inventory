@@ -9,6 +9,9 @@
 # install dependencies
 npm install
 
+# install dependencies using yarn
+yarn install
+
 # serve with hot reload at localhost:8080
 npm run dev
 
@@ -28,4 +31,26 @@ npm run e2e
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Notes
+Being a sample project to explore some new technologies and techniques I've
+decided to keep things relatively simple. Item persistence is via the
+`LocalStorage` api, but has natural points, off which synchronisation with a
+server is possible.
+
+I've also chosen to keep browser support to primarily Chrome. Firefox should be
+fine, but, at the time of writing, doesn't provide a built-in date picker for
+the `Date Available` element.
+
+I would love to add support for adding item photos via a drag-drop interface and
+may revisit to do so. My plan was to capture a photo using a `file` input and
+the `FileReader` API, then put that into a `canvas` element, resize to 200x200,
+and extract the result, encoding as a data uri which could be stored with the
+item. Currently sample item images are loaded (randomly) from
+[LoremPixel](http://lorempixel.com).
+
+I decided to forgo keyboard integration at this stage, but would love to revisit
+to allow navigation using arrow keys, deleting using the `delete` key and dialog
+dismissal using the `esc` key.
+
+I've chosen to store the price as an integer for simplicity and accuracy. When
+displayed the price is converted to a string representation with 2 decimal places.
