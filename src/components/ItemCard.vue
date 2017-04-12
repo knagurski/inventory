@@ -43,61 +43,64 @@ export default {
 </script>
 
 <style lang="scss">
-    $fontColor: lighten(rgb(0,0,0), 10%);
-    $cardColour: rgba(255,255,255,1);
+    $fontColor: lighten(black, 10%);
+    $cardColour: white;
 
     .item-card {
         cursor: pointer;
-        background-color: rgba(255,255,255,1);
+        background-color: $cardColour;
         width: 200px;
         max-width: 200px;
         margin: .5em;
-        box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
+        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .1);
         transition: all .2s ease-in-out;
 
         &:hover {
             transform: scale(1.01);
-            box-shadow: 0 2px 10px 5px rgba(0,0,0,.3);
+            box-shadow: 0 2px 10px 5px rgba(0, 0, 0, .3);
         }
-    }
 
-    .item-card--pending {
-        &:after {
-            padding: .5rem;
-            font-size: .6em;
-            /*font-weight: 100;*/
-            display: block;
-            content: 'Pending';
-            text-transform: uppercase;
-            color: $cardColour;
-            background-color: transparentize(invert($cardColour), .6);
+        &--pending {
+            background-color: transparentize($cardColour, .2);
+
+            &:after {
+                padding: .5rem;
+                font-size: .6em;
+                /*font-weight: 100;*/
+                display: block;
+                content: 'Pending';
+                text-transform: uppercase;
+                color: $cardColour;
+                background-color: transparentize(invert($cardColour), .6);
+            }
         }
-        background-color: transparentize($cardColour, .2);
-    }
 
-    .item-card__image {
-        height:200px;
-        background-color: #42b983;
-    }
-    .item-card__info {
-        padding: .5em;
-        color: $fontColor;
-    }
-    .item-card__price {
-        font-size: .8em;
-        color: lighten($fontColor, 20%);
-        font-style: italic;
-    }
-
-    .item-card__taxable {
-        font-size: .8em;
-        color: lighten($fontColor, 40%);
-
-        &:before {
-            content: '('
+        &__image {
+            height: 200px;
+            background-color: #42b983;
         }
-        &:after {
-            content: ')'
+
+        &__info {
+            padding: .5em;
+            color: $fontColor;
+        }
+
+        &__price {
+            font-size: .8em;
+            color: lighten($fontColor, 20%);
+            font-style: italic;
+        }
+
+        &__taxable {
+            font-size: .8em;
+            color: lighten($fontColor, 40%);
+
+            &:before {
+                content: '('
+            }
+            &:after {
+                content: ')'
+            }
         }
     }
 </style>

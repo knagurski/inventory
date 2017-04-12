@@ -1,5 +1,18 @@
 import StockItem from './StockItem'
 
+/**
+ * Generate a random lorempixel image url
+ *
+ * @param {String} itemName
+ * @return {String}
+ */
+function getRandomImageUrl (itemName) {
+  const sections = ['business', 'city', 'food', 'nightlife', 'fashion', 'people', 'nature', 'sports', 'technics', 'transport']
+  const randomSection = sections[Math.floor(Math.random() * sections.length)]
+
+  return `//lorempixel.com/200/200/${randomSection}/${encodeURI(itemName)}`
+}
+
 class StockItemManager {
   constructor (storage = localStorage) {
     this.storage = storage
@@ -16,8 +29,8 @@ class StockItemManager {
 
     // ID would come from the server
     item.id = Math.floor(Math.random() * 1000)
-    // images are beyond the scope, for now
-    item.imageSrc = '//loremflickr.com/200/200/product?rand=' + item.id
+    // images are beyond the scope, so for now we'll generate a random SRC
+    item.imageSrc = getRandomImageUrl(item.name)
 
     this.persist()
 
@@ -41,6 +54,13 @@ class StockItemManager {
     }
 
     return []
+  }
+  loadFixtures () {
+    return fetch('/static/fixtures.json')
+      .then(res => res.json())
+      .then(items => {
+        items.forEach(item => this.addItem(item))
+      })
   }
 }
 

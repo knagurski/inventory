@@ -1,0 +1,56 @@
+[
+  {
+    "id": 625,
+    "imageSrc": "//lorempixel.com/200/200/nightlife/A%20sample%20item%201",
+    "name": "A sample item 1",
+    "description": "A sample item 1 description",
+    "price": 100000,
+    "availabilityDate": "2017-04-12T00:00:00.000Z",
+    "taxable": true
+  },
+  {
+    "id": 816,
+    "imageSrc": "//lorempixel.com/200/200/food/A%20sample%20item%202",
+    "name": "A sample item 2",
+    "description": "A sample item 2 description",
+    "price": 223344,
+    "availabilityDate": "2018-04-12T00:00:00.000Z",
+    "taxable": true
+  },
+  {
+    "id": 629,
+    "imageSrc": "//lorempixel.com/200/200/nightlife/Random%20Item%201",
+    "name": "Random Item 1",
+    "description": "Random Item 1 description",
+    "price": 157,
+    "availabilityDate": "2017-04-12T00:00:00.000Z",
+    "taxable": true
+  },
+  {
+    "id": 326,
+    "imageSrc": "//lorempixel.com/200/200/nightlife/Random%20Item%202",
+    "name": "Random Item 2",
+    "description": "Random Item 2 description",
+    "price": 289,
+    "availabilityDate": "2018-04-12T00:00:00.000Z",
+    "taxable": true
+  },
+  {
+    "id": 928,
+    "imageSrc": "//lorempixel.com/200/200/city/Sample%20Item%201",
+    "name": "Sample Item 1",
+    "description": "Sample Item 1 description",
+    "price": 10099,
+    "availabilityDate": "2017-04-12T00:00:00.000Z",
+    "taxable": true
+  },
+  {
+    "id": 967,
+    "imageSrc": "//lorempixel.com/200/200/business/Sample%20Item%202",
+    "name": "Sample Item 2",
+    "description": "Sample Item 2 description",
+    "price": 12300,
+    "availabilityDate": "2017-04-12T00:00:00.000Z",
+    "taxable": false
+  }
+]

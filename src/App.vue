@@ -46,6 +46,9 @@ export default {
       .$on('StockItem:cancel', () => {
         this.$data.selectedItem = null
       })
+      .$on('Fixtures:load', () => {
+        this.$data.itemManager.loadFixtures()
+      })
   },
   computed: {
     getState () {
@@ -72,6 +75,7 @@ export default {
     margin: 0;
     padding: 0;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    overflow: hidden; // Firefox seems to have a strange horizontal scroll issue
   }
 
   * {
