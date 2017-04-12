@@ -17,11 +17,11 @@
         </div>
         <toolbar>
             <div>
-                <button v-if="selectedItem && selectedItem.id" class="item-form__delete" type="button" @click="deleteItem">Delete</button>
+                <button v-if="selectedItem && selectedItem.id" class="button item-form__delete" type="button" @click="deleteItem">Delete</button>
             </div>
             <div>
-                <button class="item-form__cancel" type="button" @click="cancel">Cancel</button>
-                <button class="item-form__save" type="submit">Save</button>
+                <button class="button item-form__cancel" type="button" @click="cancel">Cancel</button>
+                <button class="button item-form__save" type="submit">Save</button>
             </div>
         </toolbar>
     </form>
