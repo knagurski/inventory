@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Sidebar from './components/Sidebar.vue'
-import Listing from './components/Listing.vue'
-import ItemForm from './components/ItemForm.vue'
+import Sidebar from './components/Sidebar'
+import Listing from './components/Listing'
+import ItemForm from './components/ItemForm'
 import StockItemManager from './core/StockItemManager'
 import StockItem from './core/StockItem'
 import Event from './core/Event'
@@ -88,16 +88,6 @@ export default {
     }
   }
 
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: rgba(0,0,0,.5);
-    padding: 1em;
-
-    .toolbar__section {
-      margin: .5em;
-    }
-  }
   button {
     background-color: white;
     border:0;

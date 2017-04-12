@@ -15,25 +15,27 @@
             <label for="item-taxable">Taxable?</label>
             <input type="checkbox" id="item-taxable" v-model="stockItemForm.taxable"/>
         </div>
-        <div class="toolbar">
-            <div class="toolbar__section">
+        <toolbar>
+            <div>
                 <button v-if="selectedItem && selectedItem.id" class="item-form__delete" type="button" @click="deleteItem">Delete</button>
             </div>
-            <div class="toolbar__section">
+            <div>
                 <button class="item-form__cancel" type="button" @click="cancel">Cancel</button>
                 <button class="item-form__save" type="submit">Save</button>
             </div>
-        </div>
+        </toolbar>
     </form>
 </template>
 
 <script>
 import Event from '../core/Event'
 import StockItemForm from '../core/StockItemForm'
+import Toolbar from './Toolbar'
 
 const stockItemForm = new StockItemForm()
 
 export default {
+  components: {Toolbar},
   name: 'ItemForm',
   props: ['selectedItem'],
   watch: {
@@ -84,13 +86,13 @@ export default {
         color: white;
         display: flex;
         flex-direction: column;
-    }
 
-    .item-form__wrapper {
-        flex: 1;
-        margin: 1.5em;
-        width: 500px;
-        align-self: center;
+        &__wrapper {
+            flex: 1;
+            margin: 1.5em;
+            width: 500px;
+            align-self: center;
+        }
 
         label {
             display: block;
@@ -123,7 +125,7 @@ export default {
             }
         }
 
-        .item-form__price-wrapper {
+        &__price-wrapper {
             display: flex;
             align-items: center;
             margin-bottom: 1em;
@@ -141,14 +143,14 @@ export default {
         textarea {
             height: 10em;
         }
-    }
 
-    button.item-form__delete {
-        border-bottom-color: orange;
-    }
+        &--show .item-form {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-    .item-form--show .item-form {
-        opacity: 1;
-        transform: translateX(0);
+        &__delete {
+            border-bottom-color: orange;
+        }
     }
 </style>

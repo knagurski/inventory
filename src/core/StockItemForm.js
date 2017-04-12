@@ -33,9 +33,6 @@ class StockItemForm {
     this.stockItem.availabilityDate = new Date(this.availabilityDate)
     this.stockItem.taxable = !!this.taxable
   }
-  reset () {
-    this.setStockItem(this.stockItem)
-  }
   getDatePartFromDate (dateObj) {
     return dateObj.toISOString().replace(/T.+$/, '')
   }
