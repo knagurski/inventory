@@ -10,7 +10,7 @@ describe('StockItem', () => {
 
     expect(item.name).to.be.empty
     expect(item.description).to.be.empty
-    expect(item.price).to.equal(0)
+    expect(item.price).to.equal(100)
     expect(item.availabilityDate).to.be.a('Date')
     expect(item.taxable).to.be.true
   })
@@ -19,16 +19,18 @@ describe('StockItem', () => {
     const name = 'name'
     const description = 'description'
     const price = 12300
-    const availabilityDate = new Date().setYear(new Date().getYear() + 1)
+    const availabilityDate = new Date()
     const taxable = false
 
-    const item = getNewStockItem(
+    availabilityDate.setYear(new Date().getYear() + 1)
+
+    const item = getNewStockItem({
       name,
       description,
       price,
       availabilityDate,
       taxable
-    )
+    })
 
     expect(item.name).to.equal(name)
     expect(item.description).to.equal(description)
