@@ -1,5 +1,5 @@
 <template>
-    <div class="item-card" v-bind:class="state" @click.stop.prevent="onClick">
+    <div v-bind:class="getState()" @click.stop.prevent="onClick">
         <div class="item-card__image"><img v-bind:src="item.imageSrc"></div>
         <div class="item-card__info">
             <div class="item-card__name">{{item.name}}</div>
@@ -17,17 +17,6 @@ import Event from '../core/Event'
 export default {
   name: 'ItemCard',
   props: ['item'],
-  computed: {
-    state () {
-      const states = {}
-
-      if (this.$props.item.availabilityDate > new Date()) {
-        states['item-card--pending'] = true
-      }
-
-      return states
-    }
-  },
   filters: {
     formatPrice (price) {
       return (parseInt(price) / 100)
@@ -35,6 +24,23 @@ export default {
     }
   },
   methods: {
+    /**
+     * Get the current state of the card
+     * @return {String[]}
+     */
+    getState () {
+      const baseClass = 'item-card'
+      const classes = [baseClass]
+
+      if (this.$props.item.availabilityDate > new Date()) {
+        classes.push(baseClass + '--pending')
+      }
+
+      return classes
+    },
+    /**
+     * Handle card click
+     */
     onClick () {
       Event.$emit('StockItem:selected', this.item)
     }

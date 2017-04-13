@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="getState">
+  <div id="app">
     <div class="container" @click="selectedItem = null">
       <sidebar></sidebar>
       <listing :items="itemManager.items"></listing>
@@ -24,6 +24,7 @@ export default {
     ItemForm
   },
   mounted () {
+    // start listening for fired events
     Event
       .$on('StockItem:selected', item => {
         this.$data.selectedItem = item
@@ -50,17 +51,6 @@ export default {
         this.$data.itemManager.loadFixtures()
       })
   },
-  computed: {
-    getState () {
-      const state = {}
-
-      if (this.$data.selectedItem) {
-        state['item-form--show'] = true
-      }
-
-      return state
-    }
-  },
   data () {
     return {
       itemManager: new StockItemManager(),
@@ -75,7 +65,7 @@ export default {
     margin: 0;
     padding: 0;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    overflow: hidden; // Firefox seems to have a strange horizontal scroll issue
+    overflow: hidden;
   }
 
   * {

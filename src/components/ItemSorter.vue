@@ -12,6 +12,11 @@ export default {
   name: 'ItemSorter',
   props: ['orderAscending', 'orderBy'],
   methods: {
+    /**
+     * Get the current state
+     * @param {String} btnType
+     * @return {String[]}
+     */
     getButtonState (btnType) {
       const baseClass = 'item-sorter__button'
       const classes = [baseClass]
@@ -23,10 +28,16 @@ export default {
 
       return classes
     },
+    /**
+     * Reorder items
+     * @param {String} btnType
+     */
     reorder (btnType) {
+      // if the button isn't changed, toggle the order
       if (btnType === this.$props.orderBy) {
         Event.$emit('Listing:orderAscending', !this.$props.orderAscending)
       } else {
+        // if the button is different, order ascending
         Event.$emit('Listing:orderAscending', true)
         Event.$emit('Listing:orderBy', btnType)
       }

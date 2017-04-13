@@ -1,5 +1,5 @@
 <template>
-    <form class="item-form" @submit.prevent="persist">
+    <form v-bind:class="getState()" @submit.prevent="persist">
         <div class="item-form__wrapper">
             <label for="item-name">Name</label>
             <input type="text" id="item-name" v-model="stockItemForm.name" required/>
@@ -39,23 +39,48 @@ export default {
   name: 'ItemForm',
   props: ['selectedItem'],
   watch: {
-    selectedItem: function (newStockItem) {
+    selectedItem (newStockItem) {
+      // when the selected item changes, pass it through to the form
       stockItemForm.setStockItem(newStockItem)
     }
   },
   methods: {
+    /**
+     * Get the current state
+     * @return {String[]}
+     */
+    getState () {
+      const baseClass = 'item-form'
+      const classes = [baseClass]
+
+      if (this.$props.selectedItem) {
+        classes.push(baseClass + '--show')
+      }
+
+      return classes
+    },
+    /**
+     * Persist the changes back into the stock item
+     */
     persist () {
       stockItemForm.persist()
 
+      // send the appropriate event
       if (this.$props.selectedItem.id) {
         Event.$emit('StockItem:edit', this.$props.selectedItem)
       } else {
         Event.$emit('StockItem:add', this.$props.selectedItem)
       }
     },
+    /**
+     * Cancel editing
+     */
     cancel () {
       Event.$emit('StockItem:cancel')
     },
+    /**
+     * Delete the selected item
+     */
     deleteItem () {
       if (confirm('Are you really sure you want to delete this?')) {
         Event.$emit('StockItem:delete', this.$props.selectedItem)
@@ -144,7 +169,7 @@ export default {
             height: 10em;
         }
 
-        &--show .item-form {
+        &--show {
             opacity: 1;
             transform: translateX(0);
         }

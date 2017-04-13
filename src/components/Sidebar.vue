@@ -11,6 +11,9 @@ import Event from '../core/Event'
 export default {
   name: 'Sidebar',
   methods: {
+    /**
+     * Add a new stock item
+     */
     add () {
       Event.$emit('StockItem:new')
     }

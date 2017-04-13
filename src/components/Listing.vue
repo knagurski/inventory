@@ -53,12 +53,14 @@ export default {
     }
   },
   mounted () {
-    Event.$on('Listing:orderAscending', orderAsc => {
-      this.$data.orderAscending = orderAsc
-    })
-    Event.$on('Listing:orderBy', orderBy => {
-      this.$data.orderBy = orderBy
-    })
+    // listen for ordering events
+    Event
+      .$on('Listing:orderAscending', orderAsc => {
+        this.$data.orderAscending = orderAsc
+      })
+      .$on('Listing:orderBy', orderBy => {
+        this.$data.orderBy = orderBy
+      })
   },
   components: {
     DialogBox,
@@ -69,16 +71,20 @@ export default {
   computed: {
     filteredItems () {
       const term = this.$data.searchTerm.toLowerCase()
+
+      // filter the items based on the search term
       const filteredItems = this.$props.items.filter(item => {
         return !term || item.name.toLowerCase().indexOf(term) > -1
       })
 
+      // order by name or price
       if (this.$data.orderBy === 'name') {
         filteredItems.sort(this.sortByName)
       } else if (this.$data.orderBy === 'price') {
         filteredItems.sort(this.sortByPrice)
       }
 
+      // if order ascending is false reverse the order
       if (!this.$data.orderAscending) {
         filteredItems.reverse()
       }
@@ -87,12 +93,24 @@ export default {
     }
   },
   methods: {
+    /**
+     * Sort by price
+     * @param {StockItem} itemA
+     * @param {StockItem} itemB
+     * @return {number}
+     */
     sortByPrice (itemA, itemB) {
       if (itemA.price === itemB.price) {
         return 0
       }
       return itemA.price > itemB.price ? 1 : -1
     },
+    /**
+     * Sort by name
+     * @param {StockItem} itemA
+     * @param {StockItem} itemB
+     * @return {number}
+     */
     sortByName (itemA, itemB) {
       if (itemA.name.toLowerCase() === itemB.name.toLowerCase()) {
         return 0
@@ -100,9 +118,16 @@ export default {
 
       return itemA.name.toLowerCase() > itemB.name.toLowerCase() ? 1 : -1
     },
+    /**
+     * Load fixtures over AJAX
+     */
     loadFixtures () {
       Event.$emit('Fixtures:load')
     },
+    /**
+     * Get the current state
+     * @return {String[]}
+     */
     getState () {
       const baseClass = 'listing'
       const classes = [baseClass]

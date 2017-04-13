@@ -14,13 +14,28 @@ function getRandomImageUrl (itemName) {
 }
 
 class StockItemManager {
+  /**
+   * Constructor
+   * @param {Storage} storage
+   */
   constructor (storage = localStorage) {
     this.storage = storage
     this.items = this.load()
   }
+
+  /**
+   * Get all items
+   * @return {StockItem[]}
+   */
   getItems () {
     return this.items
   }
+
+  /**
+   * Add a new item
+   * @param {StockItem} item
+   * @return {StockItemManager}
+   */
   addItem (item) {
     this.items.push(item)
     this.items.sort((itemA, itemB) => {
@@ -36,30 +51,54 @@ class StockItemManager {
 
     return this
   }
+
+  /**
+   * Delete an item
+   * @param {StockItem} item
+   * @return {StockItemManager}
+   */
   deleteItem (item) {
     this.items.splice(this.items.indexOf(item), 1)
     this.persist()
 
     return this
   }
+
+  /**
+   * Send the current list of items to the storage
+   * @return {StockItemManager}
+   */
   persist () {
     this.storage.setItem('StockItems', JSON.stringify(this.items))
 
     return this
   }
+
+  /**
+   * Load items from the storage
+   * @return {StockItem[]}
+   */
   load () {
     if (this.storage.getItem('StockItems')) {
+      // recover items from the storage and re-hydrate them into StockItem objects
       return JSON.parse(this.storage.getItem('StockItems'))
         .map(item => new StockItem(item))
     }
 
     return []
   }
+
+  /**
+   * Load fixtures over AJAX
+   * @return {Promise}
+   */
   loadFixtures () {
     return fetch('/static/fixtures.json')
       .then(res => res.json())
       .then(items => {
-        items.forEach(item => this.addItem(item))
+        // hydrate and load each item
+        items.map(item => new StockItem(item))
+          .forEach(this.addItem.bind(this))
       })
   }
 }

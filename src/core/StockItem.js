@@ -1,4 +1,8 @@
 class StockItem {
+  /**
+   * Constructor
+   * @param {Object} options
+   */
   constructor (options = {}) {
     Object.assign(
       this,
@@ -14,6 +18,7 @@ class StockItem {
       options
     )
 
+    // if the date isn't a Date object, create one
     if (!(this.availabilityDate instanceof Date)) {
       this.availabilityDate = new Date(this.availabilityDate)
     }
